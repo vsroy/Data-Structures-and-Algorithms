@@ -74,6 +74,26 @@ int MinHeight(Node* root)
 	return min(MinHeight(root->left), MinHeight(root->right)) + 1;
 }
 
+void InvertBinaryTree(Node* root)
+{
+	if(root == NULL)
+		return;
+
+	else
+	{	
+		Node* temp;
+
+		//Recursively call the subtrees
+		InvertBinaryTree(root->left);
+		InvertBinaryTree(root->right);
+
+		//Swap the pointers in the node
+		temp = root->left;
+		root->left = root->right;
+		root->right = temp;
+	}
+}
+
 int main()
 {
 	Node* root = NULL;
