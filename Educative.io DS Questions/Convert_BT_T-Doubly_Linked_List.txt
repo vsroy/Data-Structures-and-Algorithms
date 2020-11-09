@@ -1,0 +1,29 @@
+#include<iostream>
+using namespace std;
+
+void Convert(TreeNode* treeNode, ListNode** listNode)
+{
+	if(treeNode == NULL)
+		return;
+		
+	static ListNode* prev = NULL;
+	
+	Convert(treeNode->left, listNode);
+	
+	if(prev == NULL)
+		*listNode = treeNode;
+	else
+	{
+		treeNode->left = prev;
+		prev->right = treeNode;
+		
+	}		
+	
+	prev = treeNode;
+	Convert(listNode->right,listNode);
+}
+
+int main()
+{
+	
+}
