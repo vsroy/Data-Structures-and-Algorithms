@@ -1,0 +1,62 @@
+/*
+You are given an array (list) of interval pairs as input where each interval has a start and end timestamp. 
+The input array is sorted by starting timestamps. You are required to merge overlapping intervals and return a new output array.
+*/
+
+#include<iostream>
+#include<vector>
+#include<stack>
+#include<algorithm>
+using namespace std;
+
+void MergeIntervals(vector<vector<int>>& arr)
+{
+	stack<vector<int>> vectStack;
+	
+	vectStack.push(arr[0]);
+	
+	for(int i=1;i<arr.size();i++)
+	{
+		vector<int> left = vectStack.top();
+		vectStack.pop();
+		vector<int> right = arr[i];
+		
+		if(left[1] >= right[0])
+		{
+			left[1] = max(right[1],left[1]);
+			vectStack.push(left);
+		}
+		else
+		{
+			vectStack.push(left);
+			vectStack.push(right);
+		}
+	}
+	
+	arr.clear();
+	while(!vectStack.empty())
+	{
+		arr.push_back(vectStack.top());
+		vectStack.pop();
+	}
+	
+	reverse(arr.begin(),arr.end());
+}
+
+int main()
+{
+	//vector<vector<int>> arr{{10,12},{12,15}};
+	
+	vector<vector<int>> arr{{1,5},{3,7},{4,6},{6,8}};
+
+	MergeIntervals(arr);
+	
+	for(int i=0;i<arr.size();i++)
+	{
+		vector<int> temp = arr[i];
+		for(auto i : temp)
+			cout << i << " ";
+		cout << endl;
+	}
+	return 0;
+}
