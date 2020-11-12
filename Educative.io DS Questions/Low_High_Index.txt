@@ -1,0 +1,48 @@
+/*Given a sorted array with possibly duplicate elements, the task is to find indexes of first and last occurrences of an element x in the given array. */
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int First(vector<int>& arr, int val, int low, int high)
+{
+	if(high >= low)
+	{
+		int mid  = low + (high - low)/2;
+		if((mid == 0 || val > arr[mid-1]) && arr[mid] == val)
+			return mid;
+		else if(arr[mid] > val)
+			return First(arr, val, low, mid-1);
+		else	
+			return First(arr, val, mid+1,high);
+	}
+	else
+		return -1;
+}
+
+int Last(vector<int>& arr, int val, int low, int high)
+{
+	int n = arr.size();
+	if(high >= low)
+	{
+		int mid = low + (high - low)/2;
+		if((mid == n-1 ||  val < arr[mid+1]) && arr[mid] == val)
+			return mid;
+		else if(val < arr[mid])
+			return Last(arr,val,low,mid-1);
+		else
+			return Last(arr, val, mid+1,high);
+	}
+	else
+	    return -1;
+	
+}
+
+int main()
+{
+	vector<int> ipVect{1, 2, 2, 2, 2, 3, 4, 7, 8, 8};
+	int size = ipVect.size();
+	
+	cout << "First = " << First(ipVect,8,0,size-1) << endl;
+	cout << "Last = " << Last(ipVect,8,0,size-1) << endl;
+	return 0;
+}
