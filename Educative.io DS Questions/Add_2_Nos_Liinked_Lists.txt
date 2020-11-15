@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+
+Node* Add_2_Lists(Node* first, Node* second)
+{
+	Node* res = NULL;
+	Node* temp, prev = NULL;
+	int carry = 0, sum = 0;
+	
+	//While either first/second exists
+	while(!first || !second)
+	{
+		sum = sum + (first ? first->data : 0) + (second ? second->data : 0);
+		
+		carry = (sum > 10) ? 1 : 0;
+		
+		sum  = sum % 10;
+		
+		temp = newNode(sum);
+		
+		if(res == NULL)
+			res = temp;
+		else
+			prev->next = temp;
+			
+		prev = temp;
+		
+		if(first)
+			first = first->next;
+		if(second)
+			second = second->next;
+	}
+	if(carry)
+		temp->next = newNode(carry);
+		
+	return res;
+}
+
+int main()
+{	
+	return 0;
+}
