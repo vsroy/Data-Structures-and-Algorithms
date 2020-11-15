@@ -1,0 +1,38 @@
+//Program to find the longest increasing subsequence
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int LongestIncreasingSubsequence(vector<int>& arr)
+{
+	int n = arr.size();
+	vector<int> dpVect(n,0);
+	//int dpVect[n];
+	
+	dpVect[0] = 1;
+	
+	for(int i = 1;i < n;i++)
+	{
+		dpVect[i] = 1;
+		for(int j = 0;j < i;j++)
+		{
+			if((arr[i] > arr[j]) && (dpVect[j]+1 > dpVect[i]))
+				dpVect[i] = dpVect[j] + 1;
+		}
+	}
+	//Find the max element in the array
+	int max_element = INT8_MIN;
+	for(int i=0;i<n;i++)
+	{
+		if(dpVect[i] > max_element)
+			max_element = dpVect[i];
+	}
+	return max_element;
+}
+
+int main()
+{
+	vector<int> arr{10, 22, 9, 33, 21, 50, 41, 60 };
+	cout << LongestIncreasingSubsequence(arr);
+	return 0;
+}
