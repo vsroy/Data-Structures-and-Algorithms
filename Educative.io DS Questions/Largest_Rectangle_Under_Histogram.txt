@@ -1,0 +1,60 @@
+//Program to calclulate the largest area under a histogram
+#include<iostream>
+#include<stack>
+#include<vector>
+using namespace std;
+
+int GetMaxArea(vector<int> hist)
+{
+	int n = hist.size();
+	stack<int> tempStack;
+	int max_area = INT8_MIN;
+	int curr_area = 0;
+	
+	int i = 0;
+	while(i < n)
+	{
+		if(tempStack.empty() || (hist[i] >= hist[tempStack.top()]))
+		{
+			tempStack.push(i);
+			i++;
+		}
+		else
+		{
+			int tp = tempStack.top();
+			tempStack.pop();
+			
+			//Calculate the area with tp as smallest bar
+			if(tempStack.empty())
+				curr_area = hist[tp] * i;
+			else	
+				curr_area = hist[tp] * (i - s.top() - 1);
+				
+			if(curr_area > max_area)
+				max_area = curr_area;
+		}
+	}
+	
+	while(!tempStack.empty())
+	{
+			int tp = tempStack.top();
+			tempStack.pop();
+			
+			//Calculate the area with tp as smallest bar
+			if(tempStack.empty())
+				curr_area = hist[tp] * i;
+			else	
+				curr_area = hist[tp] * (i - tempStack.top() - 1);
+				
+			if(curr_area > max_area)
+				max_area = curr_area;
+	}
+	return max_area;
+}
+
+int main()
+{
+	vector<int> arr{6, 2, 5, 4, 5, 1, 6};
+	cout << GetMaxArea(arr);
+	return 0;
+}
