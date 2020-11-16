@@ -1,0 +1,39 @@
+//Find min attempts to make a string a palindrome
+#include<iostream>
+#include<string>
+using namespace std;
+
+bool CheckPalindrome(const string& str)
+{
+	int low = 0, high  = str.length()-1;
+	
+	while(low <= high)
+	{
+		if(str[low] != str[high])
+		{
+			return false;
+		}
+		else
+		{
+			low++;
+			high--;
+		}
+	}
+	return true;
+}
+
+int MinAppends(string str)
+{
+	if(CheckPalindrome(str))
+		return 0;
+		
+	str.erase(0,1);
+	
+	return 1 + MinAppends(str);
+}
+
+int main()
+{
+	cout << MinAppends("abede");
+	return 0;
+}
