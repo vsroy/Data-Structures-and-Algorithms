@@ -1,0 +1,50 @@
+//Program to find the Union and Intersection of 2 sorted arrays
+#include<iostream>
+#include<vector>
+using namespace std;
+
+void FindUnion(vector<int> a, vector<int> b)
+{
+	int i = 0, j = 0;
+	while(i<a.size() && j<b.size())
+	{
+		if(a[i] < b[j])
+			cout << a[i++] <<" ";
+		else if(a[i] > b[j])
+			cout << b[j++] << " ";
+		else
+		{
+			cout << a[i] <<" ";i++;j++;
+		}
+	}
+	while(i<a.size())
+		cout << a[i++];
+	while(j<b.size())
+		cout << b[j++];
+}
+
+void FindIntersection(vector<int> a, vector<int> b)
+{
+	int i = 0, j = 0;
+	while(i<a.size() && j<b.size())
+	{
+		if(a[i] < b[j])
+			i++;
+		else if(a[i] > b[j])
+			j++;
+		else
+		{
+			cout << a[i] << " ";i++;j++;
+		}
+	}
+}
+
+int main()
+{	
+	vector<int> vect1{ 1, 2, 4, 5, 6 };
+	vector<int> vect2{ 2, 3, 5, 7 }; 
+	FindUnion(vect1,vect2);
+	cout << endl;
+	FindIntersection(vect1,vect2);
+	return 0;
+}
