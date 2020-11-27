@@ -18,26 +18,23 @@ void Sort012(vector<int>& ipVect)
 	
 	while (mid <= high)
 	{
-		switch (ipVect[mid])
-		{
-			case 0:
+	        if(ipVect[mid] == 0)
 			{
 				swap(ipVect[low], ipVect[mid]);
 				low++; mid++;
-				break;
+			
 			}
 
-			case 1:
+			else if(ipVect[mid] == 1)
+			{
 				mid++;
-				break;
+			}
 
-			case 2:
+			else
 			{
 				swap(ipVect[high], ipVect[mid]);
 				high--;
-				break;
-			}
-		}
+            }
 	}
 }
 
