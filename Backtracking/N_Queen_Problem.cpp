@@ -46,29 +46,25 @@ bool IsSafe(vector<vector<int>>& board, int row, int col)
 Queen problem */
 bool SolveNQueen(vector<vector<int>>& board, int col)
 {
-	/* base case: If all queens are placed
-	then return true */
-	if (col >= N)
+	if(col >= N)	//We have found our solution
 		return true;
-
-	/* Consider this column and try placing
-	this queen in all rows one by one */
-	for (int i = 0; i < N; i++)
+	
+	//Loop for all the rows in the column
+	for(int i=0;i<N;i++)
 	{
-		if (IsSafe(board, i, col))
+		//Checking if placing a queen does not violate the rules
+		if(IsSafe(board,N,col))
 		{
-			/* Place this queen in board[i][col] */
 			board[i][col] = 1;
-
-			/* recur to place rest of the queens */
-			if (SolveNQueen(board, col + 1))
+		
+			//Recur for the next column
+			if(SolveNQueen(board, col+1))
 				return true;
 			
-			/* If placing queen in board[i][col]
-			doesn't lead to a solution, then
-			remove queen from board[i][col] */
-			board[i][col] = 0;
+			//Else backtrack and insert 0 again to the box where 1 was inserted
+			board[N][col] = 0;
 		}
+		
 	}
 	return false;
 }
