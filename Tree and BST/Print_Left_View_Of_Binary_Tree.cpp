@@ -51,7 +51,7 @@ void PrintLeftViewUtil(Node* root, int level, int& maxLevel)
 
 	if (maxLevel < level)
 	{
-		cout << root->val << " ";
+		cout << root->val << " ";	//This is occur when current element is the first node in the level
 		maxLevel = level;
 	}
 
