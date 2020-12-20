@@ -1,4 +1,4 @@
-/*Given a Directed Graph. Check whether it contains any cycle or not.*/
+/*Given a Directed Graph. Check whether it contains any cycle or not. Updated solution*/
 #include<iostream>
 #include<list>
 using namespace std;
