@@ -1,4 +1,5 @@
-/*Given a Matrix consisting of 0s and 1s. Find the number of islands of connected 1s present in the matrix. */
+/*Given a Matrix consisting of 0s and 1s. Find the number of islands of connected 1s present in the matrix. 
+Updated solution*/
 #include<iostream>
 #include<vector>
 using namespace std;
