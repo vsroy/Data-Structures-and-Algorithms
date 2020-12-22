@@ -23,9 +23,12 @@ int MaxLen(vector<int> ipVect)
 	for (int i = 0; i < ipVect.size(); i++)
 	{
 		sum += ipVect[i];
-
+		
+		//This is for the first element if it is 0
 		if (ipVect[i] == 0 && max_len == 0)
 			max_len = 1;
+		
+		//This is if we find sum 0 so far, it means that max length of subarray is from 0 to i
 		if (sum == 0)
 			max_len = i + 1;
 
