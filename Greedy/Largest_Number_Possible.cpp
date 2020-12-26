@@ -13,7 +13,7 @@ void FindLargestNumber(int digits, int sum)
 		return;
 	}
 
-	if (sum > 9 * 3)
+	if (sum > 9 * digits)
 	{
 		cout << "Not possible";
 		return;
