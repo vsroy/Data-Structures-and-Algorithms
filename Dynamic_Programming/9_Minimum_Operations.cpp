@@ -25,10 +25,7 @@ int MinCost(int N, int add, int multiply)
 			N--;
 		}
 		else
-		{
-			//If number is even
-		}
-		{
+		{	//If number is even
 			int temp = N / 2;
 
 			//If cost of jumping by moving 1 step at a time(N/2 times) is less than one shot N/2 time jump  
