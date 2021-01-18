@@ -1,0 +1,44 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+void MoveZeroesToLeft(vector<int>& arr)
+{
+	int index = arr.size() - 1;
+	int read = index;
+	int write = index;
+	
+	while(read >= 0)
+	{
+		if(arr[read] != 0)
+		{
+			arr[write] = arr[read];
+			write--;
+		}
+		read--;
+	}
+	
+	
+	while(write >=0 )
+	{
+		arr[write] = 0;
+		write--;
+	}
+}
+
+int main()
+{
+	vector<int> arr{1,10,20,0,59,63,0,88,0};
+	
+	for(int i=0;i<arr.size();i++)
+		cout << arr[i] << " ";
+		
+	cout << endl;
+	
+	MoveZeroesToLeft(arr);
+	
+	for(int i=0;i<arr.size();i++)
+		cout << arr[i] << " ";
+	
+	return 0;
+}

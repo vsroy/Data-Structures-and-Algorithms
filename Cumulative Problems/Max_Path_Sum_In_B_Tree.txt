@@ -1,0 +1,31 @@
+//Program to find the max path sum in a binary tree
+#include<iostream>
+using namespace std;
+
+int MaxPathSum(Node* root, int& res)
+{
+	if(root == NULL)
+		return 0;
+		
+	//Finding the left and right values of each path	
+	int leftVal = MaxPathSum(root->left, res);
+	int rightVal = MaxPathSum(root->right, res);
+	
+	//Finding which path(left/right) has max value
+	int max_single = max(max(leftVal,rightVal)+root->val, root->val);
+	
+	//Check whether we find a path where left and right paths are involved	
+	int max_with_root = max(max_single, leftVal + rightVal + root->data);
+	
+	res = res(max_with_root, res);
+	
+	return max_single;
+}
+
+int main()
+{
+	int res = INT_MIN;
+	MaxPathSum(root, res);
+	cout << "Max Path Sum = " << res;
+	return 0;
+}

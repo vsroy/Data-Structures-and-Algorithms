@@ -1,0 +1,53 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+void PrintTempSubset(vector<int> temp)
+{
+	for(auto i : temp)
+		cout << i << " ";
+	cout << endl;
+}
+
+
+void SubsetsUtil(vector<int>& ipVect, vector<int>& tempSubset, vector<vector<int>>& result, int index)
+{
+	PrintTempSubset(tempSubset);
+	result.push_back(tempSubset);
+	
+	for(int i=index;i<ipVect.size();i++)
+	{
+		tempSubset.push_back(ipVect[i]);
+		
+		SubsetsUtil(ipVect,tempSubset,result,i+1);
+		
+		tempSubset.pop_back();
+	}
+}
+
+vector<vector<int>> subsets(vector<int>& ipVect)
+{
+	vector<vector<int>> result;
+	vector<int> tempSubset;
+	int index = 0;
+	
+	SubsetsUtil(ipVect, tempSubset, result, index);
+	return result;
+}
+
+int main()
+{
+    vector<int> ipVect{1,2,3};
+	vector<vector<int>> res = subsets(ipVect);
+	/*
+	for(int i=0;i<res.size();i++)
+	{
+		vector<int> temp = res[i];
+		for(auto i : temp)
+			cout << i << " ";
+		cout << endl;
+	}
+	*/
+	
+	return 0;
+}

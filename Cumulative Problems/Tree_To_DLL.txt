@@ -1,0 +1,29 @@
+/*Convert a tree to a Doubly Linked List*/
+#include<iostream>
+using namespace std;
+
+void Tree_To_DLL(TreeNode* root, ListNode** head)
+{
+	if(root == NULL)
+		return;
+	
+	static TreeNode* prev = NULL;
+	
+	Tree_To_DLL(root->left, head);
+	
+	if(prev == NULL)
+		*head = root;
+	else
+	{
+		root->left = prev;
+		prev->right = root;
+	}
+	prev = root;
+	
+	Tree_To_DLL(root->right, head);
+}
+
+int main()
+{
+	
+}

@@ -1,0 +1,36 @@
+/*Program to group anagrams together*/
+#include<iostream>
+#include<map>
+#include<vector>
+#include<string>
+#include<algorithm>
+using namespace std;
+
+void GroupAnagrams(vector<string> arr)
+{
+	//Adding the sorted string an original string in the map one by one
+	map<string,vector<string>> sortedArray;
+	for(int i=0;i<arr.size();i++)
+	{
+		string temp = arr[i];
+		sort(temp.begin(),temp.end());
+		sortedArray[temp].push_back(arr[i]);
+	}
+	
+	//Now, iterating through the map and printing the grouped strings one by one
+	map<string,vector<string>>::iterator it;
+	for(it = sortedArray.begin();it != sortedArray.end();it++)
+	{
+		vector<string> temp = it->second;
+		
+		for(int i=0;i<temp.size();i++)
+			cout << temp[i] << " ";
+	}
+}
+
+int main()
+{
+	vector<string> arr{ "cat", "dog", "tac", "god", "act" };
+	GroupAnagrams(arr);
+	return 0;
+}
